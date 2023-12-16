@@ -113,7 +113,7 @@ function deleteStudent($id) {
  */
 function updateStudent($id, $name, $age, $email, $profile) {
     try {
-        $db = db(); // Đảm bảo rằng hàm db() đã được định nghĩa trong tệp database.php
+        $db = db(); 
         $stmt = $db->prepare("UPDATE student SET name = :name, age = :age, email = :email, profile = :profile WHERE id = :id");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':age', $age);
@@ -121,7 +121,7 @@ function updateStudent($id, $name, $age, $email, $profile) {
         $stmt->bindParam(':profile', $profile);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        // echo "update success";
+        
     } catch(PDOException $e) {
         echo "Error updating student: " . $e->getMessage();
     }
