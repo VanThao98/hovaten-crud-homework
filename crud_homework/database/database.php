@@ -82,7 +82,8 @@ function selectAllStudents() {
  */
 function selectOnestudent($id) {
     $db = db();
-    $stmt = $db->prepare("SELECT * FROM student Where id = $id");
+    $stmt = $db->prepare("SELECT * FROM student WHERE id = :id");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
